@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag gravatar_for(@user) %> 
+<%= @user.name %> 
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+<%= link_to "new post", micropost_new_path %>
+</br>
+</br>
+<%= render 'follow_form' if signed_in? %>
+<% if @user.microposts.any? %>
+Microposts <%= User.find(params[:id]).microposts.count %>
+
+<%= render @user.microposts %>
+<% end %>
+</br>
+</br>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+</br>
+</br>
+<%= link_to "Sign out", signout_path, method: "delete" %> 
