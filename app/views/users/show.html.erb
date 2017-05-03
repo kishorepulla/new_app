@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <%= image_tag gravatar_for(@user) %> 
 <%= @user.name %> 
 <p>
@@ -15,10 +14,15 @@
 </br>
 </br>
 <%= render 'follow_form' if signed_in? %>
+</br>
 <% if @user.microposts.any? %>
 Microposts <%= User.find(params[:id]).microposts.count %>
+</br></br>
+<% @k.each do |k| %>
+<%= render k %></br></br>
+<% end %>
 
-<%= render @user.microposts %>
+<%= will_paginate @k %>
 <% end %>
 </br>
 </br>

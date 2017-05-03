@@ -2,8 +2,11 @@
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
   </br>
-     <%= Micropost.find(micropost.id).content %> </br> <%= link_to 'delete post', micropost, method: :delete %>
-	</br><%= link_to 'edit post', edit_micropost_path(micropost) %>
+     <%= Micropost.find(micropost.id).content %> </br> 
+	 <% if current_user == User.find(Micropost.find(params[:id]).user_id) %>
+<%= link_to 'delete post', micropost, method: :delete %>
+	</br><%= link_to 'edit post', edit_micropost_path(micropost) %><% end %>
+
 	</span>
   <span class="timestamp">
     </br>Posted <%= time_ago_in_words(micropost.created_at) %> ago.

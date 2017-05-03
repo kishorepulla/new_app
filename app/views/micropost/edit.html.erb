@@ -1,3 +1,7 @@
+<% if current_user != User.find(Micropost.find(params[:id]).user_id) %>
+<%= controller.redirect_to signin_path %>
+
+<% end %>
 <% provide(:title, "Edit micropost") %>  
 <h1>Update your profile</h1>
 <div class="row"> <div class="span6 offset3">  

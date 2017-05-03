@@ -1,3 +1,4 @@
 <%= @micropost.content %>
-
+<% if current_user == User.find(Micropost.find(params[:id]).user_id) %>
 <%= link_to 'delete post', @micropost, method: :delete %>
+<% end %>
