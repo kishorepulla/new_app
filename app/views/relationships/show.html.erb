@@ -1,0 +1,3 @@
+
+<% Relationship.create({:follower_id => current_user.id, :followed_id => :followed_id}) %>
+<%= controller.redirect_to current_user %>

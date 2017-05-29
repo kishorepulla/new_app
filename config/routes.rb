@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   
   get 'static_pages/about'
+  get 'relationships/show'
+ 
 
   resources :users do
   member do
@@ -22,12 +24,13 @@ Rails.application.routes.draw do
 end
   resources :sessions, only: [:new, :create, :destroy]
   resources :micropost
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships
  
   match '/signup', to: 'users#new', via: :get
   match '/signin', to: 'sessions#new',via: :get  
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/sessions', to: 'sessions#create', via: :post
   match '/micropost/new', to: 'micropost#create', via: :post
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  match '/unfollow', to: 'relationships#unfollow', via: :get
+    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

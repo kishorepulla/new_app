@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
   # GET /users
   # GET /users.json
+  def follow
+  @user = User.find(params[:id])
+  end
+  
+  
   def index
     @k = User.all
   end
@@ -11,8 +16,20 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
- @k=User.find(params[:id]).microposts.paginate(:page => params[:page], :per_page => 5)
+ @k=User.find(params[:id]).microposts
+ @kk=Relationship.where(follower_id: params[:id])
+ @kk.each do |var|
+ @k=@k+(User.find(var.followed_id).microposts)
+  end
+
+
+
+  
+ @k=@k.paginate(:page => params[:page], :per_page => 5)
+ 
  @user = User.find(params[:id])
+ 
+ 
   end
 
   # GET /users/new

@@ -1,0 +1,2 @@
+<% Relationship.find_by_follower_id_and_followed_id(current_user.id,params[:idd]).destroy %>
+<% controller.redirect_to current_user %>

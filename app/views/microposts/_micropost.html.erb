@@ -3,7 +3,7 @@
   <span class="content">
   </br>
      <%= Micropost.find(micropost.id).content %> </br> 
-	 <% if current_user == User.find(Micropost.find(params[:id]).user_id) %>
+	 <% if current_user == User.find(Micropost.find(micropost.id).user_id) %>
 <%= link_to 'delete post', micropost, method: :delete %>
 	</br><%= link_to 'edit post', edit_micropost_path(micropost) %><% end %>
 
