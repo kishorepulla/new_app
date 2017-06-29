@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem 'faker'
+gem 'carrierwave', '~>0.9'
+gem 'mini_magick', '~> 4.3'
+gem "rmagick"
 gem 'will_paginate'
 gem 'annotate', '~> 2.4.1.beta'
 gem 'bcrypt', '~> 3.1.7'

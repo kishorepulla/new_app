@@ -24,6 +24,12 @@ def unfollow
 
 end
 
+def list_f1
+
+end
+
+
+
 def show
 @follow = params[:id]
 end

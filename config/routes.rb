@@ -32,5 +32,7 @@ end
   match '/sessions', to: 'sessions#create', via: :post
   match '/micropost/new', to: 'micropost#create', via: :post
   match '/unfollow', to: 'relationships#unfollow', via: :get
+  match '/followingList', to: 'relationships#list_f', via: :get
+  match '/followersList', to: 'relationships#showList', via: :get
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

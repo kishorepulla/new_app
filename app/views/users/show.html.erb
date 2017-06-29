@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
-<%= image_tag gravatar_for(@user) %> 
+<p>
+  <strong>Image:</strong><%= @user.image_url %>
+  <%= image_tag(@user.image_url(:thumb)) %>
+</p>
 <%= @user.name %> 
 <p>
   <strong>Name:</strong>
@@ -13,8 +16,6 @@
 
 
 <% if(current_user.id != User.find(params[:id]).id ) %>
-
-
 <% if(Relationship.find_by_follower_id_and_followed_id(current_user.id,params[:id]).present?) %>
 <%= link_to "unfollow", unfollow_path(:idd => params[:id]) %>
 <% else %>
@@ -23,10 +24,15 @@
 
 <% end %>
 </br>
+<% if(current_user.id == User.find(params[:id]).id ) %>
+<%= "following   " %><%= link_to Relationship.where(follower_id: params[:id]).count, followingList_path %><%= "   " %><%= "&#160;".html_safe %>
+<%= "&#160;".html_safe %><%= "&#160;".html_safe %>
+<%= "followers   " %><%= link_to Relationship.where(followed_id: params[:id]).count, followersList_path %>
+<% else %>
 <%= "following   " %><%= Relationship.where(follower_id: params[:id]).count %><%= "   " %><%= "&#160;".html_safe %>
 <%= "&#160;".html_safe %><%= "&#160;".html_safe %>
 <%= "followers   " %><%= Relationship.where(followed_id: params[:id]).count %>
-
+<% end %>
 </br></br></br>			
 <% if current_user == User.find(params[:id]) %>
 <%= link_to "new post", micropost_new_path %>
@@ -54,8 +60,10 @@ Microposts <%= User.find(params[:id]).microposts.count %>
 <% end %>
 </br>
 </br>
+<% if current_user == User.find(params[:id]) %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 </br>
 </br>
-<%= link_to "Sign out", signout_path, method: "delete" %> 
+<%= link_to "Sign out", signout_path, method: "delete" %>
+<% end %> 

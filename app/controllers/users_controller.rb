@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(:id => User.last.id+1, :name => params[:user][:name], :email => params[:user][:email], :password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
+    @user = User.new(:id => User.last.id+1, :name => params[:user][:name], :email => params[:user][:email], :password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation], :image => params[:user][:image])
 
     if @user.save
 	redirect_to users_path
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   def update
   
   @user = User.find(params[:id]) 
-  if @user.update_attributes(:name => params[:user][:name], :email => params[:user][:email], :password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation]) 
+  if @user.update_attributes(:name => params[:user][:name], :email => params[:user][:email], :password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation], :image => params[:user][:image]) 
   flash[:success] = "Profile updated" 
   sign_in @user 
   redirect_to @user 
@@ -110,7 +110,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :image)
     end
 	
 	

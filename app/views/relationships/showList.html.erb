@@ -1,0 +1,6 @@
+<% Relationship.where(followed_id: User.find(current_user.id).id).each do |k| %>
+<% if User.find_by_id(k.follower_id).present? %>
+<%= link_to User.find(k.follower_id).name, User.find(k.follower_id) %>
+<% end %>
+</br>
+<% end %>
