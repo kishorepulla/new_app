@@ -1,4 +1,5 @@
 <% provide(:title, "Sign in") %> 
+<% if(current_user==nil) %>
 <h1>Sign in</h1>
 <div class="row">
  <div class="span6 offset3">
@@ -10,3 +11,7 @@
 <p>New user? <%= link_to "Sign up now!", signup_path %></p> 
 </div> 
 </div>
+
+<% else %>
+<% controller.redirect_to current_user %>
+  <% end %>

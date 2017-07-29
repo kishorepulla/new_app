@@ -45,9 +45,10 @@
 <% if @user.microposts.any? %>
 Microposts <%= User.find(params[:id]).microposts.count %>
 </br></br>
-<% @k.each do |k| %>
-<%= render k %></br></br>
 <% end %>
+<% @k.each do |a| %>
+<%= render a %></br></br>
+
 
 
 

@@ -24,12 +24,16 @@ end
 
 def destroy
 Micropost.find(params[:id]).destroy
-redirect_to current_user
+redirect_to current_user, flash[:success] =  "Your micropost has been deleted"
 end
 
 def update
-Micropost.find(params[:id]).update_attributes({:content => params[:micropost][:content]})
-redirect_to current_user
+if(Micropost.find(params[:id]).update_attributes({:image => params[:micropost][:image]}))
+redirect_to current_user, :notice => "Your micropost has been updated"
+else
+redirect_to current_user, flash[:success] =  "update failed"
+end
+
 
 end
 

@@ -1,4 +1,11 @@
+<strong>Image:</strong><%= @micropost.image_url %>
+  <%= image_tag(@micropost.image_url(:thumb)) %>
 <%= @micropost.content %>
-<% if current_user == User.find(Micropost.find(params[:id]).user_id) %>
+<% if current_user == User.find(params[:id]) %>
 <%= link_to 'delete post', @micropost, method: :delete %>
+<%= link_to 'edit post', edit_micropost_path(micropost) %>
 <% end %>
+<span class="timestamp">
+    </br>Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    
+  </span>
