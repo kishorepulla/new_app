@@ -44,8 +44,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    if(User.count>0)
     @user = User.new(:id => User.last.id+1, :name => params[:user][:name], :email => params[:user][:email], :password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation], :image => params[:user][:image])
-
+    else 
+	@user = User.new(:id => 1, :name => params[:user][:name], :email => params[:user][:email], :password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation], :image => params[:user][:image])
+    end
     if @user.save
 	redirect_to users_path
 	else
